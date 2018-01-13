@@ -1,12 +1,12 @@
-﻿using AdamsTodo.Models;
-using AdamsTodo.Storage;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Todo.WebApi.Models;
+using Todo.WebApi.Storage;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace AdamsTodo.Controllers
+namespace Todo.WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class TodoController : Controller

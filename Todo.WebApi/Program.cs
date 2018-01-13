@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace AdamsTodo
+namespace Todo.WebApi
 {
     public class Program
     {

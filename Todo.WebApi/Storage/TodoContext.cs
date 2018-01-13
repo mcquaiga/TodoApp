@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AdamsTodo.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Todo.WebApi.Models;
 
-namespace AdamsTodo.Storage
+namespace Todo.WebApi.Storage
 {
     public sealed class TodoContext : DbContext
     {

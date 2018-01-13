@@ -1,11 +1,11 @@
-﻿using AdamsTodo.Storage;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Todo.WebApi.Storage;
 
-namespace AdamsTodo
+namespace Todo.WebApi
 {
     public class Startup
     {

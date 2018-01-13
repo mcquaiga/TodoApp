@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using AdamsTodo.Models;
+using Todo.WebApi.Models;
 
-namespace AdamsTodo.Storage
+namespace Todo.WebApi.Storage
 {
     public class TodoRepository : ITodoRepository
     {

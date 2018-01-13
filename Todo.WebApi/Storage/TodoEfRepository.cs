@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AdamsTodo.Models;
 using Microsoft.EntityFrameworkCore;
+using Todo.WebApi.Models;
 
-namespace AdamsTodo.Storage
+namespace Todo.WebApi.Storage
 {
     public class TodoEfRepository : ITodoRepository
     {
