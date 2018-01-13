@@ -20,10 +20,16 @@ namespace Todo.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             var conn = @"Data Source=.\todo_data.db;";
-            services.AddDbContext<TodoContext>(options => options.UseSqlite(conn));
-            
+            services.AddDbContext<TodoContext>(options => options.UseSqlite(conn));            
             services.AddScoped<ITodoRepository, TodoEfRepository>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAnyOrigin",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader());
+            });
             services.AddMvc();
             services.AddLogging();
         }
@@ -35,6 +41,8 @@ namespace Todo.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAnyOrigin");
 
             app.UseMvc();
         }

@@ -10,7 +10,8 @@ import { AppComponent } from './components/app/app.component';
         AppModuleShared
     ],
     providers: [
-        { provide: 'BASE_URL', useFactory: getBaseUrl }
+        { provide: 'BASE_URL', useFactory: getBaseUrl },
+        { provide: 'API_URL', useValue: 'http://localhost:60862/' }
     ]
 })
 export class AppModule {
