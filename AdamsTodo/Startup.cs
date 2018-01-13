@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AdamsTodo.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace AdamsTodo
 {
@@ -23,7 +19,13 @@ namespace AdamsTodo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var conn = @"Data Source=.\todo_data.db;";
+            services.AddDbContext<TodoContext>(options => options.UseSqlite(conn));
+            
+            services.AddScoped<ITodoRepository, TodoEfRepository>();
+
             services.AddMvc();
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
