@@ -62,6 +62,7 @@
   "dependencies": {
     "@angular-devkit/schematics": "0.0.46",
     "@angular/cdk": "^5.0.4",
+    "@angular/cli": "^1.6.4",
     "@angular/material": "^5.0.4",
     "@schematics/angular": "^0.1.13",
     "@schematics/schematics": "0.0.13"
