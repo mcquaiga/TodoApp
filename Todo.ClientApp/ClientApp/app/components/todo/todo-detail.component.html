@@ -1,0 +1,51 @@
+﻿<style>
+    .example-card {
+        width: 300px;
+        height: 300px;
+        margin: 8px;
+        font-family: sans-serif;
+        background-color: lightskyblue
+    }
+
+    #hover-content {
+        display:none;
+        vertical-align: bottom;
+    }
+
+    .example-card:hover #hover-content {
+        display:block;
+    }
+
+    .card-header {
+        font-size: 24px;
+    }
+
+</style>
+
+<form [formGroup]="todoForm">    
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title class="card-header">
+                <h2>{{todo.name}}</h2>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <input type="checkbox"
+                       formControlName="isComplete" />
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{todo.description}}</p>
+        </mat-card-content>       
+        <mat-card-actions id="hover-content">
+            <button mat-icon-button>
+                <mat-icon>colorize</mat-icon>
+            </button>
+            <button mat-icon-button
+                    (click)="removeTodo()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card-actions>
+        <mat-card-footer>           
+        </mat-card-footer>
+    </mat-card>
+</form>

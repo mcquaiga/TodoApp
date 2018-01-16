@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Todo.WebApi.Storage;
+using Todo.Core.Storage;
+using Todo.Data.Ef;
 
 namespace Todo.WebApi
 {
@@ -28,6 +30,7 @@ namespace Todo.WebApi
                 options.AddPolicy("AllowAnyOrigin",
                     builder => builder
                         .AllowAnyOrigin()
+                        .AllowAnyMethod()
                         .AllowAnyHeader());
             });
             services.AddMvc();
@@ -43,6 +46,17 @@ namespace Todo.WebApi
             }
 
             app.UseCors("AllowAnyOrigin");
+
+            app.Use(async (context, next) => {
+                await next();
+                if (context.Response.StatusCode == 404 &&
+                    !Path.HasExtension(context.Request.Path.Value) &&
+                    !context.Request.Path.Value.StartsWith("/api/"))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });
 
             app.UseMvc();
         }

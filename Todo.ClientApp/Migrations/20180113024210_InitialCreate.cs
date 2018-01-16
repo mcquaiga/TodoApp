@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Todo.WebApi.Migrations
+namespace Todo.ClientApp.Migrations
 {
     public partial class InitialCreate : Migration
     {

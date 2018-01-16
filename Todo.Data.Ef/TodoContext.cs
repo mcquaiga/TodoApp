@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Todo.WebApi.Models;
+using Todo.Core.Models;
 
-namespace Todo.WebApi.Storage
+namespace Todo.Data.Ef
 {
     public sealed class TodoContext : DbContext
     {
         public TodoContext(DbContextOptions<TodoContext> options)
-            : base(options)
+            : base((DbContextOptions) options)
         {
-            Database.EnsureCreated();
         }
 
         public DbSet<TodoItem> TodoItems { get; set; }

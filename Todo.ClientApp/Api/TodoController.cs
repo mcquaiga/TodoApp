@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Todo.Core.Models;
+using Todo.Core.Storage;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Todo.WebApi.Controllers
+namespace Todo.ClientApp.Api
 {
     [Route("api/[controller]")]
     public class TodoController : Controller

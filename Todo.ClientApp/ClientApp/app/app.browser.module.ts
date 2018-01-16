@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppModuleShared } from './app.shared.module';
 import { AppComponent } from './components/app/app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
     bootstrap: [ AppComponent ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppModuleShared
     ],
     providers: [
-        { provide: 'BASE_URL', useFactory: getBaseUrl },
-        { provide: 'API_URL', useValue: 'http://localhost:60862/' }
+        { provide: 'API_URL', useFactory: getBaseUrl }
     ]
 })
 export class AppModule {

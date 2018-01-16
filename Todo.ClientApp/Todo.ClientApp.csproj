@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Todo.WebApi\Todo.WebApi.csproj" />
+    <ProjectReference Include="..\Todo.Core\Todo.Core.csproj" />
+    <ProjectReference Include="..\Todo.Data.Ef\Todo.Data.Ef.csproj" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

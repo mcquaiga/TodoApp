@@ -1,25 +1,54 @@
-﻿<h1>Todo Items</h1>
+﻿
 
-<p>Item: <input /></p>
-<button (click)="addTodo('', false)">Add</button>
+<h1>Todo Items</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<h2>Add New Todo</h2>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="todoForm" (ngSubmit)="addTodo()" novalidate>
 
-<p *ngIf="!todos"><em>Loading...</em></p>
+            <div class="form-group">
+                <label class="center-block">
+                    Title:
+                    <input class="form-control" formControlName="name">
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="center-block">
+                    Description:
+                    <input class="form-control" formControlName="description"
+                           placeholder="Take a note...">
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="center-block">
+                    <input type="checkbox" formControlName="isComplete">Completed
+                </label>
+            </div>
 
-<table class='table' *ngIf="todos">
-    <thead>
-    <tr>
-        <th>Name</th>        
-        <th>Complete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let todo of todos">
-        <td>{{ todo.name }}</td>
-        <td>{{ todo.isComplete }}</td>
-    </tr>
-    </tbody>
-</table>
+            <div style="margin-bottom: 1em">
+                <button type="submit"
+                        mat-raised-button color="primary">
+                    DONE
+                </button>&nbsp;
+            </div>
+        </form>
+    </mat-card-content>
+   
+</mat-card>
+
+
+    <p>This component demonstrates fetching data from the server.</p>
+
+    <p *ngIf="!todos"><em>Loading...</em></p>
+
+    <div *ngIf="todos">
+        <mat-grid-list cols="4">
+            <mat-grid-tile *ngFor="let todo of todos"
+                           [style.background]="lightblue">
+                <todo-detail [todo]="todo"></todo-detail>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
 
 

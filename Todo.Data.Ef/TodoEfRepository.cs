@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Todo.WebApi.Models;
+using Todo.Core.Models;
+using Todo.Core.Storage;
 
-namespace Todo.WebApi.Storage
+namespace Todo.Data.Ef
 {
     public class TodoEfRepository : ITodoRepository
     {
@@ -18,6 +19,8 @@ namespace Todo.WebApi.Storage
         public void Add(TodoItem item)
         {
             item.Id = Guid.NewGuid();
+            item.CreatedDateTime = DateTimeOffset.UtcNow;
+
             _context.TodoItems.Add(item);
             _context.SaveChangesAsync();
         }

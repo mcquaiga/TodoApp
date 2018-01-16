@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Todo.WebApi.Models;
+using Todo.Core.Models;
 
-namespace Todo.WebApi.Storage
+namespace Todo.Core.Storage
 {
     public interface ITodoRepository
     {

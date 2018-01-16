@@ -1,35 +1,64 @@
 ﻿import { Component, Inject } from '@angular/core';
+import { OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TodoItem } from './todoitem';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Component({
     selector: 'todo',
     templateUrl: './todo.component.html'
 })
-export class TodoComponent {
-    public todos: TodoItem[];
-    private http: Http;
-    private baseUrl: string;
+export class TodoComponent implements OnInit {
+    private api: string;
 
-    constructor(http: Http, @Inject('API_URL') baseUrl: string) {
-        this.http = http;
-        this.baseUrl = baseUrl;
+    public todos: Observable<TodoItem[]>;    
+    public todoForm: FormGroup;
+    
+    constructor(
+        private fb: FormBuilder,
+        private http: Http,
+        @Inject('API_URL') private baseUrl: string)
+    {
+        this.api = this.baseUrl + 'api/todo/';
 
-        this.http.get(baseUrl + 'api/todo/').subscribe(result => {
-            this.todos = result.json() as TodoItem[];
-        }, error => console.error(error));
+        this.createForm();
     } 
-    //name: string, isComplete: boolean
+
+    ngOnInit() {
+        this.http.get(this.api).subscribe(result => {
+            this.todos = of(result.json() as TodoItem[]);
+        }, error => console.error(error));
+    }    
+
     public addTodo() {
-        var todo: TodoItem;
-        todo = { name: 'Todo from client', isComplete: false } as TodoItem;
-        this.http.post(this.baseUrl + 'api/todo/', todo).subscribe(result => {
-            this.todos.push(result.json() as TodoItem);
+        const formModel = this.todoForm.value;
+
+        const todo = {
+            name: formModel.name,
+            description: formModel.description,
+            isComplete: formModel.isComplete
+        } as TodoItem;
+
+        this.http.post(this.api, todo).subscribe(result => {
+            //this.todos.
+            //this.todos(result.json() as TodoItem);
+        }, error => console.error(error));
+    }  
+
+    public updateTodo(todo: TodoItem) {
+
+        this.http.put(this.api + todo.id, todo).subscribe(result => {
+            
         }, error => console.error(error));
     }
-}
 
-interface TodoItem {
-    id: string;
-    name: string;
-    isComplete: boolean;
+    private createForm() {
+        this.todoForm = this.fb.group({
+            name: ['', Validators.required],
+            description: '',
+            isComplete: false
+        });
+    }
 }
